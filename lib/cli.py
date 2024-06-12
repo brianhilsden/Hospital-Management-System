@@ -1,5 +1,5 @@
 # lib/cli.py
-
+from database.setup import create_tables
 from helpers import (
     exit_program,
     helper_1
@@ -7,6 +7,7 @@ from helpers import (
 
 
 def main():
+    create_tables()
     while True:
         menu()
         choice = input("> ")
