@@ -17,9 +17,13 @@ def add_doctor():
     date_of_employment = input("Enter employment date: ")
     phone_number = int(input("Enter phone number: "))
     department_id = int(input("Enter department ID: "))
-
-    doctor = Doctor.create(doctor_name,gender,date_of_employment,phone_number,department_id)
-    print("Doctor added successfully.")
+    
+    try:
+       doctor = Doctor.create(doctor_name,gender,date_of_employment,phone_number,department_id)
+       print("Doctor added successfully.")
+    except Exception as e:
+       print(f"Error occurred: {e}")
+    
     input("\nPress Enter to continue...")
 
 def update_doctor():
@@ -28,8 +32,11 @@ def update_doctor():
     if doctor:
         field = input("Enter field to update (name, gender, date_of_employment, phone_number, department_id): ")
         value = input(f"Enter new value for {field}: ")
-        doctor.update(field, value)
-        print(f"Doctor with id {doc_id} updated successfully.")
+        try:
+           doctor.update(field, value)
+           print(f"Doctor with id {doc_id} updated successfully.")
+        except Exception as e:
+            print(f"Error occurred: {e}")
     else:
         print(f"Doctor with id {doc_id} does not exist")
     input("\nPress Enter to continue...")
@@ -84,9 +91,13 @@ def delete_doctor():
 def add_department():
     department_name = input("Enter department name: ")
     location = input("Enter location: ")
-
-    department = Department.create(department_name, location)
-    print("Department added successfully.")
+    
+    try:
+      department = Department.create(department_name, location)
+      print("Department added successfully.")
+    except Exception as e:
+            print(f"Error occurred: {e}")
+    
     input("\nPress Enter to continue...")
 
 def update_department():
@@ -95,8 +106,13 @@ def update_department():
     if department:
         field = input("Enter field to update (name, location): ")
         value = input(f"Enter new value for {field}: ")
-        department.update(field, value)
-        print(f"Department with id {dep_id} updated successfully.")
+
+        try:
+           department.update(field, value)
+           print(f"Department with id {dep_id} updated successfully.")
+        except Exception as e:
+           print(f"Error occurred: {e}")
+        
     else:
         print(f"Department with id {dep_id} does not exist")
     input("\nPress Enter to continue...")
@@ -142,8 +158,12 @@ def add_appointment():
     patient_id = int(input("Enter patient ID: "))
     doctor_id = int(input("Enter doctor ID: "))
 
-    appointment = Appointment.create(scheduled_date, patient_id, doctor_id)
-    print("Appointment added successfully.")
+    try:
+        appointment = Appointment.create(scheduled_date, patient_id, doctor_id)
+        print("Appointment added successfully.")
+    except Exception as e:
+        print(f"Error occurred: {e}")
+    
     input("\nPress Enter to continue...")
 
 def update_appointment():
@@ -152,8 +172,13 @@ def update_appointment():
     if appointment:
         field = input("Enter field to update (scheduled_date, patient_id, doctor_id): ")
         value = input(f"Enter new value for {field}: ")
-        appointment.update(field, value)
-        print(f"Appointment with id {appt_id} updated successfully.")
+
+        try:
+            appointment.update(field, value)
+            print(f"Appointment with id {appt_id} updated successfully.")
+        except Exception as e:
+            print(f"Error occurred: {e}")
+        
     else:
         print(f"Appointment with id {appt_id} does not exist")
     input("\nPress Enter to continue...")
@@ -210,7 +235,10 @@ def add_patient():
     phone_number = int(input("Enter phone number: "))
     address = input("Enter address: ")
 
-    patient = Patient.create(patient_name, date_of_birth, gender, phone_number, address)
+    try:
+        patient = Patient.create(patient_name, date_of_birth, gender, phone_number, address)
+    except Exception as e:
+        print(f"Error occurred: {e}")
     print("Patient added successfully.")
     input("\nPress Enter to continue...")
 
@@ -220,7 +248,11 @@ def update_patient():
     if patient:
         field = input("Enter field to update (name, date_of_birth, gender, phone_number, address): ")
         value = input(f"Enter new value for {field}: ")
-        patient.update(field, value)
+
+        try:
+            patient.update(field, value)
+        except Exception as e:
+            print(f"Error occurred: {e}")
         print(f"Patient with id {patient_id} updated successfully.")
     else:
         print(f"Patient with id {patient_id} does not exist")

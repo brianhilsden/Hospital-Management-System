@@ -870,6 +870,7 @@
 											"model": {
 												"$ref": "AAAAAAGQDimBQsQA3pI="
 											},
+											"visible": false,
 											"font": "Arial;15;0",
 											"left": 1029,
 											"top": 196,
@@ -881,7 +882,7 @@
 									"left": 1024,
 									"top": 89,
 									"width": 328,
-									"height": 127
+									"height": 110
 								}
 							],
 							"font": "Arial;15;0",
