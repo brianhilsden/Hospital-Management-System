@@ -1,5 +1,6 @@
 from database import conn,cursor
 
+cursor.execute('PRAGMA foreign_keys = ON;')
 def create_tables():
 
     cursor.execute('''
