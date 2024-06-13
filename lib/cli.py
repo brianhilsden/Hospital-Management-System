@@ -91,7 +91,7 @@ def doctors():
 
 def doctors_menu():
     print("Doctors Management")
-    print("b. Go back")
+    print("b. Go back to main menu")
     print("0. Exit program")
     print("1. Add new doctor")
     print("2. Update doctor details")
@@ -132,7 +132,7 @@ def patients():
 
 def patients_menu():
     print("Patient Management")
-    print("b. Go back")
+    print("b. Go back to main menu")
     print("0. Exit program")
     print("1. Add new patient")
     print("2. Update patient details")
@@ -173,7 +173,7 @@ def appointments():
 
 def appointments_menu():
     print("Appointments Management")
-    print("b. Go back")
+    print("b. Go back to main menu")
     print("0. Exit program")
     print("1. Add new appointment")
     print("2. Update appointment details")
@@ -212,7 +212,7 @@ def departments():
 
 def departments_menu():
     print("Department Management")
-    print("b. Go back")
+    print("b. Go back to main menu")
     print("0. Exit program")
     print("1. Add new department")
     print("2. Update department details")
