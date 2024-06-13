@@ -57,10 +57,11 @@ class Department:
 
         return department
 
-    def update(self):
-        sql = """UPDATE departments SET name = ?, location = ? WHERE id = ?"""
-        cursor.execute(sql, (self.name, self.location, self.id))
+    def update(self, field, value):
+        sql = f"UPDATE departments SET {field} = ? WHERE id = ?"
+        cursor.execute(sql, (value, self.id))
         conn.commit()
+        setattr(self,field,value)
 
     def delete(self):
         sql = "DELETE FROM departments WHERE id = ?"

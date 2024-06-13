@@ -67,10 +67,11 @@ class Patient:
         return patient
     
 
-    def update(self):
-        sql = """UPDATE patients SET name = ?, date_of_birth = ?, gender=?, phone_number = ?, address = ? WHERE id = ?"""
-        cursor.execute(sql,(self.name,self.date_of_birth,self.gender,self.phone_number,self.address,self.id))
+    def update(self, field, value):
+        sql = f"UPDATE patients SET {field} = ? WHERE id = ?"
+        cursor.execute(sql, (value, self.id))
         conn.commit()
+        setattr(self,field,value)
 
     def delete(self):
         sql = "DELETE FROM patients WHERE id = ?"

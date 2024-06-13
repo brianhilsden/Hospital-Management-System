@@ -62,10 +62,20 @@ class Appointment:
 
         return appointment
 
-    def update(self):
-        sql = """UPDATE appointments SET datetime = ?, patient_id = ?, doctor_id = ? WHERE id = ?"""
-        cursor.execute(sql, (self.datetime, self.patient_id, self.doctor_id))
+    def update(self, field, value):
+        if field == "doctor_id":
+            sql = "SELECT id FROM doctors WHERE id = ?"
+            if not cursor.execute(sql, (value,)).fetchone():
+                raise ValueError("Invalid doctor_id")
+        elif field == "patient_id":
+            sql = "SELECT id FROM patients WHERE id = ?"
+            if not cursor.execute(sql, (value,)).fetchone():
+                raise ValueError("Invalid patient_id")
+
+        sql = f"UPDATE appointments SET {field} = ? WHERE id = ?"
+        cursor.execute(sql, (value, self.id))
         conn.commit()
+        setattr(self,field,value)
 
     def delete(self):
         sql = "DELETE FROM appointments WHERE id = ?"

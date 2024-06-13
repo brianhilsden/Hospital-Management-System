@@ -80,10 +80,16 @@ class Doctor:
         return doctor
 
 
-    def update(self):
-        sql = """UPDATE doctors SET name = ?, gender=?,date_of_employment = ?, phone_number = ?,department_id= ? WHERE id = ?"""
-        cursor.execute(sql,(self.name,self.gender,self.date_of_employment,self.phone_number,self.department_id))
+    def update(self, field, value):
+        if field == "department_id":
+            sql = "SELECT id FROM departments WHERE id = ?"
+            if not cursor.execute(sql, (value,)).fetchone():
+                raise ValueError("Invalid department_id")
+
+        sql = f"UPDATE doctors SET {field} = ? WHERE id = ?"
+        cursor.execute(sql, (value, self.id))
         conn.commit()
+        setattr(self, field, value)
 
     def delete(self):
         sql = "DELETE FROM doctors WHERE id = ?"
