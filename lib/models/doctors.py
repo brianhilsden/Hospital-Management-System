@@ -1,4 +1,5 @@
 from database.setup import conn
+#Doctor class
 cursor = conn.cursor()
 class Doctor:
     all = {}
