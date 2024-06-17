@@ -78,8 +78,6 @@ The application presents a menu-driven interface for navigating through differen
 
 * **User Authentication:** Implement secure login functionality to restrict access to authorized users.
 * **Graphical User Interface (GUI):** Develop a user-friendly GUI for improved accessibility and ease of use.
-* **Reporting and Analytics:** Integrate reporting features to generate insights from the collected data.
-* **Integration with External Systems:** Explore integration with other healthcare systems or platforms.
 
 ## Author
 - Brian Omondi

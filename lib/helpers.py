@@ -288,7 +288,7 @@ def get_patient_doctors():
     patient_id = int(input("Enter patient id: "))
     patient = Patient.find_by_id(patient_id)
     if patient:
-        doctors = Patient.patient_doctor()
+        doctors = patient.pt_doctors()
         for doctor in doctors:
             print(doctor)
     else:
