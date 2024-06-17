@@ -1,8 +1,21 @@
 # Zawadi Hospital Management System
 
+## Table of Contents
+1. [Project Overview](#project-overview)
+2. [Key Features](#key-features)
+3. [System Architecture](#system-architecture)
+4. [Installation and Setup](#installation-and-setup)
+5. [User Guide](#user-guide)
+6. [Future Enhancements](#future-enhancements)
+7. [Author](#author)
+8. [License](#license)
+9. [Contact](#contact)
+
 ## Project Overview
 
 Zawadi Hospital Management System is a comprehensive, user-friendly, and efficient command-line interface (CLI) application designed to streamline the administrative processes of a hospital. Built with Python and utilizing SQLite for data storage, this system aims to simplify and automate key tasks related to doctors, patients, appointments, and departments.
+
+
 
 ## Key Features
 
