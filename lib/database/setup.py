@@ -1,8 +1,10 @@
 from database import conn,cursor
 
+# Enable foreign key constraint enforcement
 cursor.execute('PRAGMA foreign_keys = ON;')
 def create_tables():
 
+    # Create 'doctors' table if it does not exist
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS doctors (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -14,6 +16,8 @@ def create_tables():
             FOREIGN KEY (department_id) REFERENCES departments(id) ON DELETE SET NULL
         )
     ''')
+
+    # Create 'patients' table if it does not exist
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS patients (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,6 +28,8 @@ def create_tables():
             address TEXT
         )
     ''')
+
+    # Create 'departments' table if it does not exist
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS departments (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -31,6 +37,8 @@ def create_tables():
             location TEXT
         )
     ''')
+
+    # Create 'appointments' table if it does not exist
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS appointments (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -42,5 +50,5 @@ def create_tables():
         )
     ''')
 
+    # Commit the transaction
     conn.commit()
-    

@@ -1,7 +1,9 @@
 from database.setup import conn
 cursor = conn.cursor()
+
 class Department:
-    all = {}
+    all = {}   # Dictionary to store all department instances
+
     def __init__(self, name, location, id=None):
         self.name = name
         self.location = location
@@ -36,24 +38,24 @@ class Department:
         sql = """INSERT INTO departments (name, location) VALUES (?, ?)"""
         cursor.execute(sql, (self.name, self.location))
         conn.commit()
-        self.id = cursor.lastrowid
-        type(self).all[self.id] = self
+        self.id = cursor.lastrowid   # Set the ID after successful insertion
+        type(self).all[self.id] = self   # Add to the dictionary
 
     @classmethod
     def create(cls, name, location):
-        department = cls(name, location)
+        department = cls(name, location)   # Create a new instance
         department.save()
         return department
 
     @classmethod
     def instance_from_db(cls, row):
-        department = cls.all.get(row[0])
+        department = cls.all.get(row[0])   # Check if instance exists in all
         if department:
             department.location = row[2]
         else:
             department = cls(row[1], row[2])
             department.id = row[0]
-            cls.all[department.id] = department
+            cls.all[department.id] = department   # Add to dictionary if new
 
         return department
 
@@ -61,13 +63,13 @@ class Department:
         sql = f"UPDATE departments SET {field} = ? WHERE id = ?"
         cursor.execute(sql, (value, self.id))
         conn.commit()
-        setattr(self,field,value)
+        setattr(self, field, value)   # Update the attribute
 
     def delete(self):
         sql = "DELETE FROM departments WHERE id = ?"
         cursor.execute(sql, (self.id,))
         conn.commit()
-        del type(self).all[self.id]
+        del type(self).all[self.id]   # Remove from dictionary
 
     @classmethod
     def find_by_id(cls, id):
@@ -80,7 +82,7 @@ class Department:
         sql = "SELECT * FROM departments"
         rows = cursor.execute(sql).fetchall()
         return [cls.instance_from_db(row) for row in rows]
-    
+
     def dept_doctors(self):
         from models.doctors import Doctor
         sql = "SELECT * FROM doctors WHERE doctors.department_id = ? "
